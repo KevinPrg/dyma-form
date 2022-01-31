@@ -4,7 +4,7 @@ import Composant from './composant';
 function App() {
   return (
     <div className="App">
-      <Composant />
+      <Composant name = "coucou"/>
     </div>
   );
 }

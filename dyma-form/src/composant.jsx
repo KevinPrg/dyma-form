@@ -1,7 +1,7 @@
 import React from "react";
 
-function Composant1 () {
-    return <h1>Hello World</h1>
+const Composant1 = (props) => {
+    return <h1>Hello World {props.name}</h1>
 }
 
 export default Composant1;

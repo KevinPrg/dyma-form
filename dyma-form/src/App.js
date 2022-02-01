@@ -1,5 +1,6 @@
 import './App.css';
 import { Header, MovieList, MovieDetails } from './components';
+import Timer from './Timer';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <MovieList />
       <MovieDetails />
       </div>
+      <Timer />
     </div>
   );
 }

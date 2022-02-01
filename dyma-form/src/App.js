@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { Header, MovieList, MovieDetails } from './components';
 
 function App() {
 
   const [selected, setSelected] = useState(0)
-  const [movies, setMovies] = useState([{
+  const movies = [{
     title: 'The Godfather',
     img: 'https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmUtYTAwNi00MTYxLWJmNWYtYzZlODY3ZTk3OTFlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UY209_CR3,0,140,209_AL_.jpg',
     details: 'R | 175 min | Crime, Drama',
@@ -25,7 +25,7 @@ function App() {
     img: 'https://m.media-amazon.com/images/M/MV5BMDliMmNhNDEtODUyOS00MjNlLTgxODEtN2U3NzIxMGVkZTA1L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UY209_CR0,0,140,209_AL_.jpg',
     details: 'R | 155 min | Action, Adventure, Drama',
     description: 'A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.'
-    }]) 
+    }]
 
   const updateSelectedMovie = (title) => {
     const index = movies.findIndex((m) => {

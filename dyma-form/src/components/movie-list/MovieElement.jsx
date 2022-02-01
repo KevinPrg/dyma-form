@@ -1,13 +1,19 @@
 import React from "react";
 
-function MovieElement() {
+function MovieElement(props) {
+    console.log(props)
+
+    const mouseEnter = () => {
+        props.updateSelectedMovie(props.movie.title)
+ }
     return(
-        <div className="w-25 p-2">
-            <div className="card">
-                <img src="https://www.ecranlarge.com/media/cache/1600x1200/uploads/image/001/187/5gjou3t2qrznujqjcg7fqdmi76t-349.jpg" alt="gladiator" className="card-img-top" />
-                <div className="card-body">
-                    <h5 className="card-title">GLADIATOR</h5>
-                    <p className="card-text"> le général MAXIMUS est le plus fidèle soutien de l'empereur</p>
+        <div onMouseEnter={mouseEnter} className="w-50 p-2">
+            <div className="border d-flex">
+                <img width="150" height="200" src={props.movie.img} alt="gladiator" className="d-block mx-auto" />
+                <div className="flex-fill d-flex flex-column p-3">
+                    <h5>{props.movie.title}</h5>
+                    <hr className="w-100" />
+                    <p> {props.movie.description} </p>
                 </div>
             </div>
         </div>

@@ -1,8 +1,7 @@
 import React from "react";
 
 function MovieElement(props) {
-    console.log(props)
-
+    
     const mouseEnter = () => {
         props.updateSelectedMovie(props.movie.title)
  }

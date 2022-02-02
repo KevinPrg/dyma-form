@@ -1,6 +1,6 @@
 import React from "react";
 
-import Container_test from './MovieElement.scss';
+import './MovieElement.scss';
 
 function MovieElement(props) {
     

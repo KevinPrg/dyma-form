@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Header, MovieList, MovieDetails, Loading } from './components';
 import moviesList from './components/data'
+import * as axios from 'axios';
+
+import apiMovie from './conf/api.movie';
 
 function App() {
 
@@ -18,6 +21,12 @@ function App() {
       setLoaded(true)
     }, 2000
   )
+
+  useEffect(() => {
+    apiMovie.get('/discover/movie')
+      .then( response => console.log(response.data) )
+      .catch( err => console.log(err));
+  })
 
   return (
     <div className="App d-flex flex-column">

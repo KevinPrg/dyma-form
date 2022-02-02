@@ -1,5 +1,5 @@
 import React from "react";
-import { MovieElement } from "..";
+import MovieElement from "../movie-list/MovieElement/MovieElement";
 
 function MovieList(props) {
     return(

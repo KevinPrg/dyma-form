@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { Header, MovieList, MovieDetails, Loading, SearchBar } from './components';
-
+import Layout from './features/films';
 import apiMovie, {apiMovieMap} from './conf/api.movie';
+import Header from './components/header/Header'
 
 function App() {
 
@@ -19,7 +19,8 @@ function App() {
       .then( res => res.data.results)
       .then( moviesApi => {
         const movies = moviesApi.map(apiMovieMap)
-         updateMovies(movies)
+        updateMovies(movies)
+        console.log(movies, "movies")
       })
       .catch( err => console.log(err));
   }, [setMovies])
@@ -32,14 +33,13 @@ function App() {
   return (
     <div className="App d-flex flex-column">
       <Header />
-      <SearchBar  updateMovies={updateMovies} />
-      { loaded && (
-        <div className='d-flex flex-row flex-fill pt-4' >
-        <MovieList movie={movies} updateSelectedMovie={updateSelectedMovie} />
-        <MovieDetails movie={movies} select={selected} />
-        </div>
-      )  }
-      { loaded === false && <Loading />  }
+      <Layout
+          loaded={ loaded }
+          updateMovies={ updateMovies }
+          updateSelectedMovie={ updateSelectedMovie }
+          movies={ movies }
+          selectedMovie={ selected }
+        />
     </div>
   );
 }

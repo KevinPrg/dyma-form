@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Header, MovieList, MovieDetails, Loading } from './components';
-import moviesList from './components/data'
-import * as axios from 'axios';
 
 import apiMovie from './conf/api.movie';
 
@@ -16,17 +14,25 @@ function App() {
     setSelected(index)
   };
 
-  setTimeout( () => {
-    setMovies(moviesList)
-      setLoaded(true)
-    }, 2000
-  )
-
   useEffect(() => {
     apiMovie.get('/discover/movie')
-      .then( response => console.log(response.data) )
+      .then( res => res.data.results)
+      .then( moviesApi => {
+        const movies = moviesApi.map( movie => ({ 
+          img: 'https://image.tmdb.org/t/p/w500' + movie.poster_path,
+          title: movie.title,
+          details: `${ movie.release_date } | ${ movie.vote_average } /5 | (${ movie.vote_count })`,
+          description: movie.overview
+         }))
+         updateMovies(movies)
+      })
       .catch( err => console.log(err));
   })
+
+  const updateMovies = (datas) => {
+    setMovies(datas)
+    setLoaded(true)
+ }
 
   return (
     <div className="App d-flex flex-column">

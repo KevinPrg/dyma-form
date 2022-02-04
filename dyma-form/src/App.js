@@ -60,7 +60,11 @@ function App() {
             favoris={favoris.map(favori => favori.title)}
         />
         } />
-        <Route path='/favoris' element={ Favoris } />
+        <Route path='/favoris' element={ 
+          <Favoris 
+            favoris={favoris}
+            removeFavori={removeFavoris}
+          /> } />
       </Routes>
       { !favoris && <Navigate to="/films" />}
     </div>

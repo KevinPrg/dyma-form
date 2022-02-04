@@ -1,0 +1,13 @@
+.Container_test {
+    width: 40%;
+    height: 400px;
+    overflow: hidden;
+    background: grey;
+    margin: 1% 0 1% 0;
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.05);
+        transition: all 0.3s;
+    }
+
+}

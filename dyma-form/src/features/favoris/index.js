@@ -1,8 +1,14 @@
 import React from "react";
+import FavoriList from './components/favori-list/FavoriList'
 
 const Favoris = (props) => {
     return(
-        <hi>Favoris</hi>
+        <div className="d-flex flex-row flex-fill pt-4 p-2" >
+            <FavoriList 
+                favoris={props.favoris}
+                removeFavori={props.removeFavori}
+            />
+      </div>
     )
 }
 

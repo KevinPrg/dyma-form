@@ -3,12 +3,15 @@ import './App.css';
 import Layout from './features/films';
 import apiMovie, {apiMovieMap} from './conf/api.movie';
 import Header from './components/header/Header'
+import Favoris from './features/favoris'
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 
 function App() {
 
   const [selected, setSelected] = useState(0)
   const [movies, setMovies] = useState()
   const [loaded, setLoaded] = useState(false)
+  const [favoris, setFavoris] = useState([])
 
   const updateSelectedMovie = (index) => {
     setSelected(index)
@@ -20,7 +23,6 @@ function App() {
       .then( moviesApi => {
         const movies = moviesApi.map(apiMovieMap)
         updateMovies(movies)
-        console.log(movies, "movies")
       })
       .catch( err => console.log(err));
   }, [setMovies])
@@ -30,17 +32,39 @@ function App() {
     setLoaded(true)
  }
 
+  const addFavoris = (title) => {
+    const film = movies.find( movie => movie.title === title)
+    setFavoris([...favoris, film])
+  }
+
+  const removeFavoris = (title) => {
+    const index = favoris.findIndex(favori => favori.title === title)
+    setFavoris(currentFav => currentFav.filter((_, i) => i !== index));
+  }
+
   return (
+    <Router>
     <div className="App d-flex flex-column">
       <Header />
-      <Layout
-          loaded={ loaded }
-          updateMovies={ updateMovies }
-          updateSelectedMovie={ updateSelectedMovie }
-          movies={ movies }
-          selectedMovie={ selected }
+      <Routes>
+        <Route path='/' element={ <div>VOUS ETES SUR L'ACCEUIL</div> } />
+        <Route path='/films' element={
+          <Layout
+            loaded={ loaded }
+            updateMovies={ updateMovies }
+            updateSelectedMovie={ updateSelectedMovie }
+            movies={ movies }
+            selectedMovie={ selected }
+            addFavori={addFavoris}
+            removeFavori={removeFavoris}
+            favoris={favoris.map(favori => favori.title)}
         />
+        } />
+        <Route path='/favoris' element={ Favoris } />
+      </Routes>
+      { !favoris && <Navigate to="/films" />}
     </div>
+    </Router>
   );
 }
 

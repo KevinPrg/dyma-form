@@ -14,6 +14,13 @@ function MovieElement(props) {
                     <h5>{props.movie.title}</h5>
                     <hr className="w-100" />
                     <p> {props.movie.details} </p>
+                    <div>
+                    { props.isFavori ?(
+                        <button  onClick={ () => {props.removeFavori(props.movie.title)}} className="btn btn-small btn-danger" >Remove</button>
+                    ) : (
+                        <button  onClick={ () => {props.addFavori(props.movie.title)}} className="btn btn-small btn-primary" >Add</button>
+                    )  }
+                    </div>
                 </div>
             </div>
     )

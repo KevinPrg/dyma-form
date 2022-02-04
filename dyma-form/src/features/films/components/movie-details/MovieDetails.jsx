@@ -1,7 +1,6 @@
 import React from "react";
 
 function MovieDetails(props) {
-    console.log(props, "details")
     return(
         <div className="w-25 bg-light p-4 d-flex flex-column">
             <h5> {props.movie.title} </h5>
